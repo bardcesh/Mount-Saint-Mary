@@ -116,7 +116,7 @@ get_raw_data = function(serial_number, data_points=NULL, start_date=NULL, end_da
 ##### -----  Below is the action data pull and munging
 
 
-wk <- read_csv("https://raw.githubusercontent.com/bardcesh/Stevenson-Quant-AQ/main/data/full_stevenson.csv", col_types = "cddc") 
+wk <- read_csv("https://raw.githubusercontent.com/bardcesh/Mount-Saint-Mary/main/data/full_newburgh.csv", col_types = "cddc") 
 
 
 wk <- wk %>%
@@ -177,4 +177,4 @@ recent_data_h <- recent_data %>%
 #print(row)
 
 # append at the end of the csv the new data
-write_csv(recent_data_h,paste0('data/full_stevenson.csv'),append = T)   
+write_csv(recent_data_h,paste0('data/full_newburgh.csv'),append = T)   
