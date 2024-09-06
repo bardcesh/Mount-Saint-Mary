@@ -7,7 +7,7 @@ library(jsonlite)
 #### ---------- API stuff
 
 ## QuantAQ API details
-api_key = 'ALQY1DLRK62KLFI5JBV6RXGO'
+api_key = 'JSPWKD9RVB5IMP526YLBSGCS'
 serial_number = 'MOD-PM-00215' # Specific to this monitoring device
 
 base_url = "https://api.quant-aq.com/device-api/v1"
