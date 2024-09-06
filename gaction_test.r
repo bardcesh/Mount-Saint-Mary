@@ -87,18 +87,23 @@ data = get_data(serial_number = serial_number, data_points=NULL, start_date=max_
 # Convert JSON data to a list or data frame
 recent_data <- jsonlite::fromJSON(data)
 
-# Check if recent_data is a list and convert to data frame if necessary
+# Check and debug structure of recent_data
+print("Structure of recent_data:")
+print(str(recent_data))  # Debug: Inspect structure
+
+# Check if recent_data is a list and extract data
 if (is.list(recent_data)) {
-  print("Structure of recent_data:")
-  print(str(recent_data))
-  
-  # Extract the relevant data component
-  recent_data <- recent_data$data  # Adjust based on actual JSON structure
+  if ("data" %in% names(recent_data)) {
+    print("Data found in recent_data")
+    recent_data <- recent_data$data  # Assuming 'data' holds the actual readings
+  } else {
+    stop("No 'data' field found in recent_data. Check API response structure.")
+  }
 }
 
 # Ensure recent_data is a data frame
 if (!is.data.frame(recent_data)) {
-  stop("Recent data is not a data frame.")
+  stop("Recent data is not a data frame. The structure might be incorrect.")
 }
 
 # Process the data
@@ -126,3 +131,4 @@ recent_data_h <- recent_data %>%
 
 # Append new data to the existing CSV file
 write_csv(recent_data_h, 'data/full_newburgh.csv', append = TRUE)
+
