@@ -122,12 +122,13 @@ recent_data <- recent_data %>%
 
 # Compress to hourly data
 recent_data_h <- recent_data %>%
-  mutate(YMD = floor_date(YMD, unit = "hour")) %>%  # Floor the timestamps to the nearest hour
-  group_by(YMD) %>%
+  group_by(YMD = cut(YMD, breaks="60 min")) %>%
   summarize(
     PM2.5 = mean(PM2.5, na.rm=TRUE),
     PM10 = mean(PM10, na.rm=TRUE)
-  )
+  ) %>%
+  mutate(YMD = ymd_hms(YMD))
+
 
 # Append new data to the existing CSV file
 write_csv(recent_data_h, 'data/full_newburgh.csv', append = TRUE)
