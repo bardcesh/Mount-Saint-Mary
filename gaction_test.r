@@ -92,7 +92,7 @@ if (is.list(recent_data)) {
   print(str(recent_data))
   
   # Extract the relevant data component
-  recent_data <- recent_data$data  # Adjust based on actual JSON structure
+  recent_data <- recent_data$data.frame  # Adjust based on actual JSON structure
 }
 
 # Ensure recent_data is a data frame
